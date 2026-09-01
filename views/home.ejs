@@ -1,0 +1,149 @@
+<%- include('partials/header.ejs') %>
+
+  <body class="bg-light">
+
+    <!-- Main Container -->
+
+    <div class="container py-5">
+
+
+      <!-- App Header -->
+      <div class="text-center mb-5">
+        <h1 class="fw-bold text-primary">
+          📱 Contact App
+        </h1>
+        <p class="text-muted">
+          Manage all your contacts easily
+        </p>
+      </div>
+
+      <!-- Contact Card -->
+      <div class="card border-0 shadow-lg rounded-4">
+
+        <!-- Card Header -->
+        <div class="card-header bg-primary text-white p-4 rounded-top-4">
+          <div class="row align-items-center">
+
+            <div class="col-md-8">
+              <h2 class="h4 mb-1 fw-bold">
+                👥 All Contacts
+              </h2>
+              <p class="mb-0 opacity-75">
+                Your contact list
+              </p>
+            </div>
+
+            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+              <a href="/add-contact" class="btn btn-light text-primary fw-semibold px-4">
+                ➕ Add New
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Card Body -->
+        <div class="card-body p-0">
+
+          <!-- Responsive Table -->
+          <div class="table-responsive">
+
+            <table class="table table-hover align-middle mb-0">
+
+              <thead class="table-light">
+                <tr>
+                  <th class="ps-4">Id</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th class="text-center">Actions</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% contacts.forEach((element, index)=> { %>
+
+
+                  <tr>
+                    <td class="ps-4 fw-semibold">
+                      <%=index+1 %>
+                    </td>
+
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <div
+                          class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2"
+                          style="width: 40px; height: 40px;">
+                          <%= element.first_name.charAt(0).toUpperCase() %>
+                        </div>
+
+                        <span class="fw-semibold">
+                          <%= element.first_name %>
+                        </span>
+                      </div>
+                    </td>
+
+                    <td>
+                      <%= element.last_name %>
+                    </td>
+
+                    <td>
+                      <a href="mailto:sk@gmail.com" class="text-decoration-none">
+                        <%= element.email %>
+                      </a>
+                    </td>
+
+                    <td>
+                      <a href="tel:9461387083" class="text-decoration-none">
+                        📞 <%= element.phone %>
+                      </a>
+                    </td>
+
+                    <td class="text-center">
+
+                      <a href="/show-contact/<%=element._id%> 
+                        " class="btn btn-sm btn-outline-info me-1" title="View Contact">
+                        👁️
+                      </a>
+
+                      <a href="/update-contact/<%=element._id%> " class="btn btn-sm btn-outline-warning me-1"
+                        title="Edit Contact">
+                        📝
+                      </a>
+                      <button class="btn btn-sm btn-outline-danger" title="Delete Contact">
+                        <a href="/delete-contact/<%=element._id %> ">❌</a>
+                      </button>
+
+                    </td>
+                  </tr>
+                  <% }); %>
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+        <!-- Card Footer -->
+        <div class="card-footer bg-white border-0 p-3">
+          <div class="text-muted small">
+            Showing <strong>1</strong> contact
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="text-center mt-4 text-muted">
+        <small>
+          © 2026 Contact App
+        </small>
+      </div>
+
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <%- include('partials/footer.ejs') %>
