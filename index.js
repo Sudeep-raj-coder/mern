@@ -60,6 +60,10 @@ app.get('/update-contact/:id', async (req, res) => {
 })
 
 app.post('/update-contact/:id', async (req, res) => {
+  // const {first_name, last_name, email,phone,address} = req.body //body se jis sequence me data aarha h usi sequence me model wala name likhna h
+  // await Contact.findByIdAndUpdate(req.params.id,{first_name, last_name, email,phone,address})
+
+  // await Contact.findByIdAndUpdate(req.params.id, req.body) //req.body tab use krna h jab from field ka name and model ka name same ho tb
 
   await Contact.findByIdAndUpdate(req.params.id, {
 

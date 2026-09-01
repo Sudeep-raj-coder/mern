@@ -57,6 +57,7 @@
                   <th>Last Name</th>
                   <th>Email</th>
                   <th>Phone</th>
+                  <th>Address</th>
                   <th class="text-center">Actions</th>
                 </tr>
               </thead>
@@ -90,13 +91,19 @@
 
                     <td>
                       <a href="mailto:sk@gmail.com" class="text-decoration-none">
-                        <%= element.email %>
+                        📩<%= element.email %>
                       </a>
                     </td>
 
                     <td>
                       <a href="tel:9461387083" class="text-decoration-none">
                         📞 <%= element.phone %>
+                      </a>
+                    </td>
+
+                    <td>
+                      <a href="tel:9461387083" class="text-decoration-none">
+                        🏠 <%= element.address %>
                       </a>
                     </td>
 
