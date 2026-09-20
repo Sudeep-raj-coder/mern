@@ -1,0 +1,79 @@
+<%- include('partials/header.ejs') %>
+
+  <body class="bg-light">
+
+    <!-- Main Container -->
+
+    <div class="container py-5">
+
+
+      <!-- App Header -->
+      <div class="text-center mb-5">
+        <h1 class="fw-bold text-primary">
+          📱 Contact App
+        </h1>
+        <p class="text-muted">
+          Manage all your contacts easily
+        </p>
+      </div>
+
+      <!-- Contact Card -->
+      <div class="card border-0 shadow-lg rounded-4">
+
+        <!-- Card Header -->
+        <div class="card-header bg-primary text-white p-4 rounded-top-4">
+          <div class="row align-items-center">
+
+            <div class="col-md-8">
+              <h2 class="h4 mb-1 fw-bold">
+                404 Error
+              </h2>
+              <p class="mb-0 opacity-75">
+                Your contact list
+              </p>
+            </div>
+
+            <% if(message){ %>
+              <h1>
+                <%= message %>
+              </h1>
+              <% }else{ %>
+                <h1>Page not found. </h1>
+                <% } %>
+
+          </div>
+        </div>
+
+        <!-- Card Body -->
+        <div class="card-body p-0">
+
+          <!-- Responsive Table -->
+          <div class="table-responsive">
+
+
+
+          </div>
+
+        </div>
+
+        <!-- Card Footer -->
+        <div class="card-footer bg-white border-0 p-3">
+          <div class="text-muted small">
+            Showing <strong>1</strong> contact
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="text-center mt-4 text-muted">
+        <small>
+          © 2026 Contact App
+        </small>
+      </div>
+
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <%- include('partials/footer.ejs') %>
