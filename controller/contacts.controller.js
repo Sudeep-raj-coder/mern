@@ -26,18 +26,31 @@ export const postAddContact = async (req, res) => {
 export const getShowContact = async (req, res) => {
 
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    res.render("404", { message: "Invalid Id" })
+    return res.render("404", { message: "Invalid Id" })
   }
-  const upcontact = await Contact.findById(req.params.id)
-  res.render('show-contact', { upcontact: upcontact })
+
+  try {
+    const upcontact = await Contact.findById(req.params.id)
+    if (!upcontact) return res.render("404", { message: "Contact not found" })
+    return res.render('show-contact', { upcontact: upcontact })
+  } catch (error) {
+    res.render("500", { message: error })
+  }
+
 }
 
 export const getUpdateContact = async (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    return res.render("404", { message: "Invalid Id" })
+  }
   const upcontact = await Contact.findById(req.params.id)
   res.render('update-contact', { upcontact: upcontact })
 }
 
 export const postUpdateContact = async (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    return res.render("404", { message: "Invalid Id" })
+  }
   // const {first_name, last_name, email,phone,address} = req.body //body se jis sequence me data aarha h usi sequence me model wala name likhna h
   // await Contact.findByIdAndUpdate(req.params.id,{first_name, last_name, email,phone,address})
 
@@ -54,6 +67,9 @@ export const postUpdateContact = async (req, res) => {
 }
 
 export const deleteContact = async (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    return res.render("404", { message: "Invalid Id" })
+  }
   await Contact.findByIdAndDelete(req.params.id)
   res.redirect('/')
 }
