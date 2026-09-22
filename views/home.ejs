@@ -63,72 +63,90 @@
               </thead>
 
               <tbody>
-                <% contacts.forEach((element, index)=> { %>
+                <% var srno=Counter %>
+                  <% contacts.forEach(element=> { %>
 
 
-                  <tr>
-                    <td class="ps-4 fw-semibold">
-                      <%=index+1 %>
-                    </td>
+                    <tr>
+                      <td class="ps-4 fw-semibold">
+                        <%=Counter++ %>
+                      </td>
 
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <div
-                          class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2"
-                          style="width: 40px; height: 40px;">
-                          <%= element.first_name.charAt(0).toUpperCase() %>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div
+                            class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2"
+                            style="width: 40px; height: 40px;">
+                            <%= element.first_name.charAt(0).toUpperCase() %>
+                          </div>
+
+                          <span class="fw-semibold">
+                            <%= element.first_name %>
+                          </span>
                         </div>
+                      </td>
 
-                        <span class="fw-semibold">
-                          <%= element.first_name %>
-                        </span>
-                      </div>
-                    </td>
+                      <td>
+                        <%= element.last_name %>
+                      </td>
 
-                    <td>
-                      <%= element.last_name %>
-                    </td>
+                      <td>
+                        <a href="mailto:sk@gmail.com" class="text-decoration-none">
+                          📩<%= element.email %>
+                        </a>
+                      </td>
 
-                    <td>
-                      <a href="mailto:sk@gmail.com" class="text-decoration-none">
-                        📩<%= element.email %>
-                      </a>
-                    </td>
+                      <td>
+                        <a href="tel:9461387083" class="text-decoration-none">
+                          📞 <%= element.phone %>
+                        </a>
+                      </td>
 
-                    <td>
-                      <a href="tel:9461387083" class="text-decoration-none">
-                        📞 <%= element.phone %>
-                      </a>
-                    </td>
+                      <td>
+                        <a href="tel:9461387083" class="text-decoration-none">
+                          🏠 <%= element.address %>
+                        </a>
+                      </td>
 
-                    <td>
-                      <a href="tel:9461387083" class="text-decoration-none">
-                        🏠 <%= element.address %>
-                      </a>
-                    </td>
+                      <td class="text-center">
 
-                    <td class="text-center">
-
-                      <a href="/show-contact/<%=element._id%> 
+                        <a href="/show-contact/<%=element._id%> 
                         " class="btn btn-sm btn-outline-info me-1" title="View Contact">
-                        👁️
-                      </a>
+                          👁️
+                        </a>
 
-                      <a href="/update-contact/<%=element._id%> " class="btn btn-sm btn-outline-warning me-1"
-                        title="Edit Contact">
-                        📝
-                      </a>
-                      <button class="btn btn-sm btn-outline-danger" title="Delete Contact">
-                        <a href="/delete-contact/<%=element._id %> ">❌</a>
-                      </button>
+                        <a href="/update-contact/<%=element._id%> " class="btn btn-sm btn-outline-warning me-1"
+                          title="Edit Contact">
+                          📝
+                        </a>
+                        <button class="btn btn-sm btn-outline-danger" title="Delete Contact">
+                          <a href="/delete-contact/<%=element._id %> ">❌</a>
+                        </button>
 
-                    </td>
-                  </tr>
-                  <% }); %>
+                      </td>
+                    </tr>
+                    <% }); %>
               </tbody>
 
             </table>
 
+            <nav aria-label="...">
+              <ul class="pagination justify-content-center ">
+
+                <% if(hasPrevPage){ var disableClass="" }else{ var disableClass="disabled" } %>
+                  <li class="page-item <%=disableClass %> "><a href="/?page=<%=  prevPage %> "
+                      class="page-link">Previous</a></li>
+                  <% for(i=1; i<=totalPages; i++){ let activeClass=currentpage==i ? "active" : "" %>
+                    <li class="page-item <%= activeClass %>"><a class="page-link" href="/?page=<%= i  %> ">
+                        <%= i %>
+                      </a></li>
+                    <% } %>
+
+                      <% let disableClass2=hasNextPage ? "" : "disabled" %>
+                        <li class="page-item <%= disableClass2 %>"><a class="page-link"
+                            href="/?page=<%= nextPage %> ">Next</a></li>
+              </ul>
+            </nav>
           </div>
 
         </div>
